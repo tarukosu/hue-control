@@ -6,16 +6,19 @@
     <title>
       hue control
     </title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
   </head>
 
   <body>
-    <form>
+    <form id="ip-form">
       <input type="text" name="ip"/>
       <input type="submit" value="送信">
     </form>
-    <form>
-      <div class="lamp" id="origin-lamp" style="display: none;">
-	<ul style="list-style:none; float: left;">
+    <form id="lamp-form">
+      <div id="origin-lamp">
+	<ul class="lamp-ul">
+	  <input type="hidden" class="key"/>
 	  <li>
 	    <input type="checkbox" name="checkbox"/>
 	  </li>
@@ -23,15 +26,25 @@
 	    hoge
 	  </li>
 	  <li>
-	    <input type="button" name="aaa" value="on"/>
+	    <input type="button" name="on-off" class="on-off-button" value="on"/>
 	  </li>
 	  <li>
-	    <input type="number" name="x"/>
+	    <div class="number-label">x:</div>
+	    <input type="number" name="x" value="0"/>
 	  </li>
+	  <li>
+	    <div class="number-label">y:</div>
+	    <input type="number" name="y" value="0"/>
+	  </li>
+	  <li>
+	    <div class="number-label">bri:</div>
+	    <input type="number" name="bri" value="0"/>
+	  </li>
+
 	</ul>
       </div>
 
-      <input type="submit" value="送信">
+      <input type="button" id="submit-button" value="送信">
     </form>
     <script src="jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="index.js"></script>

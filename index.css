@@ -1,0 +1,15 @@
+.number-label{
+    //display: inline;
+    float:left;
+    width: 30px;
+    background-color: #red;
+}
+
+#origin-lamp{
+    display: none;
+}
+
+.lamp-ul{
+    list-style:none;
+    float: left;
+}
