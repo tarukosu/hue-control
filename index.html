@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      hue control
+    </title>
+  </head>
+
+  <body>
+    <form>
+      <input type="text" name="ip"/>
+      <input type="submit" value="送信">
+    </form>
+    <form>
+      <div class="lamp" id="origin-lamp" style="display: none;">
+	<ul style="list-style:none; float: left;">
+	  <li>
+	    <input type="checkbox" name="checkbox"/>
+	  </li>
+	  <li class="name">
+	    hoge
+	  </li>
+	  <li>
+	    <input type="button" name="aaa" value="on"/>
+	  </li>
+	  <li>
+	    <input type="number" name="x"/>
+	  </li>
+	</ul>
+      </div>
+
+      <input type="submit" value="送信">
+    </form>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+
+</html>
