@@ -2,6 +2,50 @@ $(document).ready(function(){
     function getKey(dom){
 	return dom.parents(".lamp-ul").find(".key").val();
     }
+    
+    /*
+    $(".number").change(function(){
+	alert("aa");
+    });
+    */
+
+    function numberChange(dom){
+	var checked = dom.parents(".lamp-ul").find(".group").prop("checked");
+	if(checked){
+	    //alert("aa");
+	    var lamp_ul = dom.parents(".lamp-ul");
+	    var key = lamp_ul.find(".key").val();
+	    var x = lamp_ul.find("input[name=x]").val();
+	    var y = lamp_ul.find("input[name=y]").val();
+	    var bri = lamp_ul.find("input[name=bri]").val();
+	    
+	    var lamps = $("#lamp-form").children(".lamp");
+	    //alert(lamps.length);
+	    lamps.each(function(){
+		if($(this).find(".group").prop("checked")){
+		    $(this).find("input[name=x]").val(x);
+		    $(this).find("input[name=y]").val(y);
+		    $(this).find("input[name=bri]").val(bri);
+		}
+	    });
+	}
+    }
+
+    $('.number').change(function() {
+    //$('.number').keypress(function() {
+    //$('.number').on( 'input', function() {
+	//isChange = true;
+	//delSuccessMSG();o
+	numberChange($(this));
+    });
+    // deleteキーとbackspaceキーの入力を検知
+    /*
+    $('.number').keyup(function(e) {
+	if (e.keyCode == 46 || e.keyCode == 8){
+	    numberChange($(this));
+	}
+    });*/
+
     $(".on-off-button").click(function(){
 	//alert($(this).val());
 	var state;
