@@ -2,6 +2,12 @@ $(document).ready(function(){
     function getKey(dom){
 	return dom.parents(".lamp-ul").find(".key").val();
     }
+
+    function setColor(dom, x, y, bri){
+	dom.find("input[name=x]").val(x);
+	dom.find("input[name=y]").val(y);
+	dom.find("input[name=bri]").val(bri);
+    }
     
     function numberChange(dom){
 	var checked = dom.parents(".lamp-ul").find(".group").prop("checked");
@@ -16,9 +22,7 @@ $(document).ready(function(){
 
 	    lamps.each(function(){
 		if($(this).find(".group").prop("checked")){
-		    $(this).find("input[name=x]").val(x);
-		    $(this).find("input[name=y]").val(y);
-		    $(this).find("input[name=bri]").val(bri);
+		    setColor($(this), x, y, bri);
 		}
 	    });
 	}
@@ -31,7 +35,7 @@ $(document).ready(function(){
 	    var x = parseFloat($(this).find("input[name=x]").val());
 	    var y = parseFloat($(this).find("input[name=y]").val());
 	    var bri = parseFloat($(this).find("input[name=bri]").val());
-
+	    
 	    var data = {
 		"xy": [x, y],
 		"bri": bri
@@ -43,7 +47,15 @@ $(document).ready(function(){
 		dataType: 'JSON',
 		data: JSON.stringify(data),
 		success: function( data ) {
-		}
+		    if(debug){
+			for(var i=0; i < data.length; i++){
+			    one_data = data[i];
+			    if(one_data["error"]){
+				alert(JSON.stringify(one_data["error"]));
+			    }
+			}
+		    }
+		},
 	    });
 
 	});
@@ -104,35 +116,58 @@ $(document).ready(function(){
     
     //presets button
     $(".preset").click(function(){
-	alert($(this).val());
 	var colors = presets[$(this).val()];
-	alert(JSON.stringify(colors));
+
 	for(var i=0; i<colors.length; i++){
 	    var key = i + 1;
 	    color = colors[i];
-	    //alert(color["on"]);
 	    setOnOff(key, color["on"]);
+	    var lamp_ul = $("#lamp-form").find(".key[value=" + key + "]").parents(".lamp-ul");
+	    setColor(lamp_ul, color["x"], color["y"], color["hue"]);
 	}
+	submitColor();
     });
 
     //init
     var ip = "192.168.0.147";
     var user = "newdeveloper";
+    var debug = false;
     
-    presets = {
+    //presets
+    var hue = 80;
+    var presets = {
 	"aaaa":
 	[{
 	    on: true,
-	    x: 11,
-	    y: 22,
-	    hue: 11
+	    x: 0.1,
+	    y: 0.2,
+	    hue: hue
 	},
 	 {
-	     on: false,
-	     x: 11,
-	     y: 22,
-	     hue: 11
-	}],
+	     on: true,
+	     x: 0.2,
+	     y: 0.3,
+	     hue: hue
+	 },
+	 {
+	     on: true,
+	     x: 0.4,
+	     y: 0.4,
+	     hue: hue
+	 },
+	 {
+	     on: true,
+	     x: 0.6,
+	     y: 0.7,
+	     hue: hue
+	 },
+	 {
+	     on: true,
+	     x: 0.8,
+	     y: 0.6,
+	     hue: hue
+	 }
+	],
 	"bbb":
 	[{
 	    on: true,
