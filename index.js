@@ -24,50 +24,6 @@ $(document).ready(function(){
 	}
     }
 
-    $('.number').change(function() {
-	numberChange($(this));
-    });
-    // submit when enter pushed
-    $('.number').keypress(function(e) {
-	var value = $(this).val();
-	if (e.keyCode == 13 && value != "") {
-	    numberChange($(this));
-	    submitColor();
-	}
-    });
-
-    $(".on-off-button").click(function(){
-	//set new state
-	var state;
-	if($(this).val() == "on"){
-	    state = false;
-	}else{
-	    state = true;
-	}
-	data = {on: state};
-
-	var key = getKey($(this));
-	var button = $(this);
-
-	$.ajax({
-	    url: "http://" + ip + "/api/" + user + "/lights/" + key + "/state",
-	    type: "PUT",
-            dataType: 'JSON',
-	    data: JSON.stringify(data),
-	    success: function( data ) {
-		var new_state;
-		for(key in data[0]["success"]){
-		    new_state = data[0]["success"][key];
-		}
-		if(state){
-		    button.val("on");
-		}else{
-		    button.val("off");
-		}
-	    }
-	});
-    });
-
     function submitColor(){
 	lamps = $("#lamp-form").children(".lamp");
 	lamps.each(function(){
@@ -93,11 +49,106 @@ $(document).ready(function(){
 	});
 
     }
+
+    $('.number').change(function() {
+	numberChange($(this));
+    });
+
+    // submit when enter pushed
+    $('.number').keypress(function(e) {
+	var value = $(this).val();
+	if (e.keyCode == 13 && value != "") {
+	    numberChange($(this));
+	    submitColor();
+	}
+    });
+    // submit when submit button pushed
     $("#submit-button").click(submitColor);
+    
+    
+    // on off button
+    function setOnOff(key, on){
+	var data = {on: on};
+	var button = $("#lamp-form").find(".key[value=" + key + "]").parents(".lamp-ul").find(".on-off-button");
+
+	$.ajax({
+	    url: "http://" + ip + "/api/" + user + "/lights/" + key + "/state",
+	    type: "PUT",
+            dataType: 'JSON',
+	    data: JSON.stringify(data),
+	    success: function( data ) {
+		var new_state;
+		for(key in data[0]["success"]){
+		    new_state = data[0]["success"][key];
+		}
+		if(new_state){
+		    button.val("on");
+		}else{
+		    button.val("off");
+		}
+	    }
+	});
+    }
+    
+    $(".on-off-button").click(function(){
+	var key = getKey($(this));
+	//set new state
+	var state;
+	if($(this).val() == "on"){
+	    state = false;
+	}else{
+	    state = true;
+	}
+	setOnOff(key, state);
+    });
+    
+    //presets button
+    $(".preset").click(function(){
+	alert($(this).val());
+	var colors = presets[$(this).val()];
+	alert(JSON.stringify(colors));
+	for(var i=0; i<colors.length; i++){
+	    var key = i + 1;
+	    color = colors[i];
+	    //alert(color["on"]);
+	    setOnOff(key, color["on"]);
+	}
+    });
 
     //init
-    var ip = "192.168.0.147"
-    var user = "newdeveloper"
+    var ip = "192.168.0.147";
+    var user = "newdeveloper";
+    
+    presets = {
+	"aaaa":
+	[{
+	    on: true,
+	    x: 11,
+	    y: 22,
+	    hue: 11
+	},
+	 {
+	     on: false,
+	     x: 11,
+	     y: 22,
+	     hue: 11
+	}],
+	"bbb":
+	[{
+	    on: true,
+	    x: 11,
+	    y: 22,
+	    hue: 11
+	}],
+
+    };
+
+    for( var key in presets){
+	var preset = presets[key];
+	var newpreset = $( "#origin-preset" ).clone(true);
+	newpreset.val(key);
+	newpreset.show().removeAttr("id").insertBefore( $("#origin-preset") );
+    };
     
     //get lights
     $.ajax({

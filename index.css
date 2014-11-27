@@ -11,10 +11,8 @@ body{
 }
 
 .number-label{
-    //display: inline;
     float:left;
     width: 40px;
-    background-color: #red;
 }
 
 #origin-lamp{
@@ -26,6 +24,17 @@ body{
     float: left;
 }
 
+#origin-preset{
+    display: none;
+}
+
+.preset{
+    margin-left: 20px;
+    width: 100px;
+    height: 40px;
+}
+
 .clear{
     clear: both;
 }
+
