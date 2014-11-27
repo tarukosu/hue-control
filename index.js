@@ -123,7 +123,7 @@ $(document).ready(function(){
 	    color = colors[i];
 	    setOnOff(key, color["on"]);
 	    var lamp_ul = $("#lamp-form").find(".key[value=" + key + "]").parents(".lamp-ul");
-	    setColor(lamp_ul, color["x"], color["y"], color["hue"]);
+	    setColor(lamp_ul, color["x"], color["y"], color["bri"]);
 	}
 	submitColor();
     });
@@ -134,38 +134,38 @@ $(document).ready(function(){
     var debug = false;
     
     //presets
-    var hue = 80;
+    var bri = 80;
     var presets = {
 	"aaaa":
 	[{
 	    on: true,
 	    x: 0.1,
 	    y: 0.2,
-	    hue: hue
+	    bri: bri
 	},
 	 {
 	     on: true,
 	     x: 0.2,
 	     y: 0.3,
-	     hue: hue
+	     bri: bri
 	 },
 	 {
 	     on: true,
 	     x: 0.4,
 	     y: 0.4,
-	     hue: hue
+	     bri: bri
 	 },
 	 {
 	     on: true,
 	     x: 0.6,
 	     y: 0.7,
-	     hue: hue
+	     bri: bri
 	 },
 	 {
 	     on: true,
 	     x: 0.8,
 	     y: 0.6,
-	     hue: hue
+	     bri: bri
 	 }
 	],
 	"bbb":
@@ -173,7 +173,7 @@ $(document).ready(function(){
 	    on: true,
 	    x: 11,
 	    y: 22,
-	    hue: 11
+	    bri: 11
 	}],
 
     };
