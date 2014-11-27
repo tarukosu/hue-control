@@ -111,7 +111,19 @@ $(document).ready(function(){
 	}else{
 	    state = true;
 	}
-	setOnOff(key, state);
+
+	var checked = $(this).parents(".lamp-ul").find(".group").prop("checked");
+	if(checked){
+	    var lamps = $("#lamp-form").children(".lamp");
+
+	    lamps.each(function(){
+		if($(this).find(".group").prop("checked")){
+		    setOnOff($(this).find(".key").val(), state);
+		}
+	    });
+	}else{
+	    setOnOff(key, state);
+	}
     });
     
     //presets button
