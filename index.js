@@ -27,6 +27,14 @@ $(document).ready(function(){
     $('.number').change(function() {
 	numberChange($(this));
     });
+    // submit when enter pushed
+    $('.number').keypress(function(e) {
+	var value = $(this).val();
+	if (e.keyCode == 13 && value != "") {
+	    numberChange($(this));
+	    submitColor();
+	}
+    });
 
     $(".on-off-button").click(function(){
 	//set new state
@@ -60,7 +68,7 @@ $(document).ready(function(){
 	});
     });
 
-    $("#submit-button").click(function(){
+    function submitColor(){
 	lamps = $("#lamp-form").children(".lamp");
 	lamps.each(function(){
 	    var key = $(this).find(".key").val();
@@ -83,8 +91,9 @@ $(document).ready(function(){
 	    });
 
 	});
-	
-    });
+
+    }
+    $("#submit-button").click(submitColor);
 
     //init
     var ip = "192.168.0.147"
