@@ -50,26 +50,30 @@ $(document).ready(function(){
 	//alert($(this).val());
 	var state;
 	if($(this).val() == "on"){
-	    state = true;
-	    $(this).val("off");
-	}else{
 	    state = false;
-	    $(this).val("on");
+	}else{
+	    state = true;
 	}
-//	var key = $(this).parents(".lamp-ul").find(".key").val();
+
 	var key = getKey($(this));
-	alert(key);
+
+	data = {on: state};
+	var button = $(this);
+
 	$.ajax({
 	    url: "http://" + ip + "/api/" + user + "/lights/" + key + "/state",
 	    type: "PUT",
-	    data: {
-		on: state
-	    },
+            dataType: 'JSON',
+	    data: JSON.stringify(data),
 	    success: function( data ) {
+		var new_state;
+		for(key in data[0]["success"]){
+		    new_state = data[0]["success"][key];
+		}
 		if(state){
-		    $(this).val("off");
+		    button.val("on");
 		}else{
-		    $(this).val("on");
+		    button.val("off");
 		}
 	    }
 	});
@@ -121,7 +125,7 @@ $(document).ready(function(){
 	//alert(a[key]["name"]);
     }
 
-    var ip = "172.0.0.1";
+    var ip = "192.168.0.147"
     var user = "newdeveloper"
 
     //get lights
@@ -133,25 +137,30 @@ $(document).ready(function(){
 	    //zipcode: 97201
 	},
 	success: function( data ) {
-	    data = a;
+	    //data = a;
 	    for( var key in data){
+		//alert(data[key]["state"]["on"]);
+		var newlamp = $( "#origin-lamp" ).clone(true);
 
-		alert(data[key]["name"]);
-		$( "#origin-lamp" ).clone(true).attr("id", "").insertBefore( $("#origin-lamp") );
+		// on or off
+		if(data[key]["state"]["on"]){
+		    newlamp.find(".on-off-button").val("on");
+		}else{
+		    newlamp.find(".on-off-button").val("off");
+		}
+		//x y bri
+		var bri = data[key]["state"]["bri"];
+		var xy = data[key]["state"]["xy"];
+		var x = xy[0];
+		var y = xy[1];
+		newlamp.find("input[name=x]").val(x);
+		newlamp.find("input[name=y]").val(y);
+		newlamp.find("input[name=bri]").val(bri);
+
+		newlamp.find(".key").val(key);
+		newlamp.find(".name").text(data[key]["name"]);
+		newlamp.show().removeAttr("id").addClass("lamp").insertBefore( $("#origin-lamp") );
 	    }
 	}
     });
-
-    //test
-    data = a;
-    for( var key in data){
-	//alert(data[key]["name"]);
-	var newlamp = $( "#origin-lamp" ).clone(true);
-	newlamp.find(".key").val(key);
-	newlamp.show().removeAttr("id").addClass("lamp").insertBefore( $("#origin-lamp") );
-    }
-
-    //test
-
-    alert("jQueryファイルの読み込み完了でーす。")
 });
