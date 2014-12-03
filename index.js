@@ -158,7 +158,7 @@ $(document).ready(function(){
 		$(".lamp").remove();
 
 		for( var key in data){
-		    if( $.inArray(key, lights_array) == -1){
+		    if( $.inArray(parseInt(key), lights_array) == -1){
 			continue;
 		    }
 		    //clone lamp form
@@ -313,11 +313,11 @@ $(document).ready(function(){
     //control numbers
     var controls = {
 	"all": {
-	    "lights": range(0,11),
+	    "lights": range(1,15),
 	    "buttons": presets
 	},
 	"test": {
-	    "lights": range(0,11),
+	    "lights": range(2,3),
 	    "buttons": presets_b
 	}
     }

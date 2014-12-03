@@ -52,3 +52,15 @@ body{
     clear: both;
 }
 
+
+
+#submit-button{
+width: 100px;
+height: 100px;
+}
+
+input[type=checkbox] {
+width: 30px;
+height: 30px;
+vertical-align: middle;
+}
