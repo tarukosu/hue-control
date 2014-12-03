@@ -225,26 +225,115 @@ $(document).ready(function(){
 
     
     //presets
-    var max = 255;
-    var X = 0.346;
-    var Y = 0.358;
+    //var max = 255;
+    //var X = 0.346;
+    //var Y = 0.358;
 
-    var D1 = {
-	on: true,
-	x: X,
-	y: Y,
-	bri: max
-    };
-    var D2 = {
-	on: true,
-	x: 0.345,
+	//ﾃﾞｨﾌｭｰｽﾞ無し
+    var D11 = {	on: true,
+	x: 0.346,
 	y: 0.358,
-	bri: 232
+	bri: 124
     };
-    var off = {
-	on: false,
-	x: X,
-	y: Y,
+	var D12 = {	on: true,
+	x: 0.346,
+	y: 0.358,
+	bri: 148
+    };
+	var D13 = {	on: true,
+	x: 0.345,
+	y: 0.356,
+	bri: 197
+    };
+	
+	
+    var D21 = {	on: true,
+	x: 0.346,
+	y: 0.358,
+	bri: 112
+    };
+    var D22 = {	on: true,
+	x: 0.346,
+	y: 0.356,
+	bri: 134
+    };
+    var D23 = {	on: true,
+	x: 0.345,
+	y: 0.356,
+	bri: 180
+    };
+	
+	var D31 = {	on: true,
+	x: 0.346,
+	y: 0.358,
+	bri: 84
+    };
+	var D32 = {	on: true,
+	x: 0.346,
+	y: 0.357,
+	bri: 103
+    };
+	var D33 = {	on: true,
+	x: 0.345,
+	y: 0.356,
+	bri: 142
+    };
+	
+	
+	//ﾃﾞｨﾌｭｰｽ有り
+    var d11 = {	on: true,
+	x: 0.347,
+	y: 0.360,
+	bri: 154
+    };
+	var d12 = {	on: true,
+	x: 0.347,
+	y: 0.359,
+	bri: 185
+    };
+	var d13 = {	on: true,
+	x: 0.346,
+	y: 0.357,
+	bri: 255
+    };
+	
+	
+    var d21 = {	on: true,
+	x: 0.347,
+	y: 0.360,
+	bri: 140
+    };
+    var d22 = {	on: true,
+	x: 0.347,
+	y: 0.359,
+	bri: 169
+    };
+    var d23 = {	on: true,
+	x: 0.346,
+	y: 0.357,
+	bri: 230
+    };
+	
+	var d31 = {	on: true,
+	x: 0.347,
+	y: 0.36,
+	bri: 108
+    };
+	var d32 = {	on: true,
+	x: 0.347,
+	y: 0.359,
+	bri: 132
+    };
+	var d33 = {	on: true,
+	x: 0.346,
+	y: 0.357,
+	bri: 183
+    };
+	
+	//OFF
+    var off = {	on: false,
+	x: 0.346,
+	y: 0.358,
 	bri: 0
     };
 
@@ -253,25 +342,94 @@ $(document).ready(function(){
 	[
 	    off,off,off,off,off
 	],
-	"夏":
-
+	
+	//no difはﾃﾞｨﾌｭｰｽﾞ無しの意味，大・大は（仰角，照度）＝（大，大）
+	"no dif 大・大":
 	[
-	    D1,D1,D1,D1,D1
+	    D11,D11,D11,D11,D11
 	],
-	"冬":
-
+	"no dif 中・大":
 	[
-	    D2,D2,D2,D2,D2
+	    D12,D12,D12,D12,D12
 	],
-	"例": 
-	[{
-	    on: true,
-	    x: 0.5,
-	    y: 0.5,
-	    bri: 11
-	}],
+	"no dif 小・大":
+	[
+	    D13,D13,D13,D13,D13
+	],
+	
+	
+	"no dif 大・中":
+	[
+	    D21,D21,D21,D21,D21
+	],
+	"no dif 中・中":
+	[
+	    D22,D22,D22,D22,D22
+	],
+	"no dif 小・中":
+	[
+	    D23,D23,D23,D23,D23
+	],
 
-    };
+	
+	"no dif 大・小":
+	[
+	    D31,D31,D31,D31,D31
+	],
+	"no dif 中・小":
+	[
+	    D32,D32,D32,D32,D32
+	],
+	"no dif 小・小":
+	[
+	    D33,D33,D33,D33,D33
+	],
+	
+	
+
+		//difはﾃﾞｨﾌｭｰｽﾞ有りの意味，大・大は（仰角，照度）＝（大，大）
+	"dif 大・大":
+	[
+	    d11,d11,d11,d11,d11
+	],
+	"dif 中・大":
+	[
+	    d12,d12,d12,d12,d12
+	],
+	"dif 小・大":
+	[
+	    d13,d13,d13,d13,d13
+	],
+	
+	
+	"dif 大・中":
+	[
+	    d21,d21,d21,d21,d21
+	],
+	"dif 中・中":
+	[
+	    d22,d22,d22,d22,d22
+	],
+	"dif 小・中":
+	[
+	    d23,d23,d23,d23,d23
+	],
+
+	
+	"dif 大・小":
+	[
+	    d31,d31,d31,d31,d31
+	],
+	"dif 中・小":
+	[
+	    d32,d32,d32,d32,d32
+	],
+	"dif 小・小":
+	[
+	    d33,d33,d33,d33,d33
+	],
+}
+	
 
     var presets_b = presets;
 
@@ -282,8 +440,16 @@ $(document).ready(function(){
 	    "lights": range(1,15),
 	    "buttons": presets
 	},
-	"test": {
-	    "lights": range(2,3),
+	"1": {
+	    "lights": range(1,5),
+	    "buttons": presets_b
+	},
+	"2": {
+	    "lights": range(6,10),
+	    "buttons": presets_b
+	},
+	"3": {
+	    "lights": range(11,15),
 	    "buttons": presets_b
 	}
     }
