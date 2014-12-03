@@ -1,4 +1,12 @@
 $(document).ready(function(){
+    function range(start, end){
+	var array = [];
+	for(var i = start; i <= end; i++){
+	    array.push(i);
+	}
+	return array;
+    }
+
     function getKey(dom){
 	return dom.parents(".lamp-ul").find(".key").val();
     }
@@ -140,10 +148,78 @@ $(document).ready(function(){
 	submitColor();
     });
 
+    function initLights(lights_array){
+	//get lights
+	$.ajax({
+	    url: "http://" + ip + "/api/" + user + "/lights",
+	    type: "GET",
+	    success: function( data ) {
+		//remove old class
+		$(".lamp").remove();
+
+		for( var key in data){
+		    if( $.inArray(key, lights_array) == -1){
+			continue;
+		    }
+		    //clone lamp form
+		    var newlamp = $( "#origin-lamp" ).clone(true);
+
+		    // set on or off
+		    if(data[key]["state"]["on"]){
+			newlamp.find(".on-off-button").val("on");
+		    }else{
+			newlamp.find(".on-off-button").val("off");
+		    }
+		    // set x y bri
+		    var bri = data[key]["state"]["bri"];
+		    var xy = data[key]["state"]["xy"];
+		    var x = xy[0];
+		    var y = xy[1];
+		    newlamp.find("input[name=x]").val(x);
+		    newlamp.find("input[name=y]").val(y);
+		    newlamp.find("input[name=bri]").val(bri);
+
+		    newlamp.find(".key").val(key);
+		    newlamp.find(".name").text(data[key]["name"]);
+		    newlamp.show().removeAttr("id").addClass("lamp").insertBefore( $("#origin-lamp") );
+		}
+	    }
+	});
+    }
+
+    function initButtons(buttons_array){
+	$(".preset-instance").remove();
+	for( var key in buttons_array){
+	    var preset = buttons_array[key];
+	    var newpreset = $( "#origin-preset" ).clone(true);
+	    newpreset.val(key);
+	    newpreset.show().removeAttr("id").addClass("preset-instance").insertBefore( $("#origin-preset") );
+	};
+    }
+
+    function initControlButtons(control){
+	for( var key in control){
+	    var newcontrol = $( "#origin-control" ).clone(true);
+	    newcontrol.val(key);
+	    newcontrol.show().removeAttr("id").addClass("control-instance").insertBefore( $("#origin-control") );
+	}
+    }
+
+    $(".control").click(function(){
+	initControl($(this).val());
+    });
+
+    function initControl(control_name){
+	$("#control-key").text(control_name);
+	initLights(controls[control_name]["lights"]);
+	initButtons(controls[control_name]["buttons"]);
+    }
+
     //init
     var ip = "192.168.0.147";
     var user = "newdeveloper";
     var debug = false;
+
     
     //presets
     var bri = 80;
@@ -190,41 +266,62 @@ $(document).ready(function(){
 
     };
 
-    for( var key in presets){
-	var preset = presets[key];
-	var newpreset = $( "#origin-preset" ).clone(true);
-	newpreset.val(key);
-	newpreset.show().removeAttr("id").insertBefore( $("#origin-preset") );
+    var presets_b = {
+	"hoge":
+	[{
+	    on: true,
+	    x: 0.1,
+	    y: 0.2,
+	    bri: bri
+	},
+	 {
+	     on: true,
+	     x: 0.2,
+	     y: 0.3,
+	     bri: bri
+	 },
+	 {
+	     on: true,
+	     x: 0.4,
+	     y: 0.4,
+	     bri: bri
+	 },
+	 {
+	     on: true,
+	     x: 0.6,
+	     y: 0.7,
+	     bri: bri
+	 },
+	 {
+	     on: true,
+	     x: 0.8,
+	     y: 0.6,
+	     bri: bri
+	 }
+	],
+	"huga":
+	[{
+	    on: true,
+	    x: 11,
+	    y: 22,
+	    bri: 11
+	}],
+
     };
-    
-    //get lights
-    $.ajax({
-	url: "http://" + ip + "/api/" + user + "/lights",
-	type: "GET",
-	success: function( data ) {
-	    for( var key in data){
-		//clone lamp form
-		var newlamp = $( "#origin-lamp" ).clone(true);
 
-		// set on or off
-		if(data[key]["state"]["on"]){
-		    newlamp.find(".on-off-button").val("on");
-		}else{
-		    newlamp.find(".on-off-button").val("off");
-		}
-		// set x y bri
-		var bri = data[key]["state"]["bri"];
-		var xy = data[key]["state"]["xy"];
-		var x = xy[0];
-		var y = xy[1];
-		newlamp.find("input[name=x]").val(x);
-		newlamp.find("input[name=y]").val(y);
-		newlamp.find("input[name=bri]").val(bri);
 
-		newlamp.find(".key").val(key);
-		newlamp.find(".name").text(data[key]["name"]);
-		newlamp.show().removeAttr("id").addClass("lamp").insertBefore( $("#origin-lamp") );
-	    }
+    //control numbers
+    var controls = {
+	"all": {
+	    "lights": range(0,11),
+	    "buttons": presets
+	},
+	"test": {
+	    "lights": range(0,11),
+	    "buttons": presets_b
 	}
-    });
+    }
+
+    initControlButtons(controls);
+    initControl("all");
 });

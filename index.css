@@ -34,6 +34,20 @@ body{
     height: 40px;
 }
 
+#origin-control{
+    display: none;
+}
+
+.control{
+    width: 200px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#control-status{
+    margin-top: 20px;
+}
+
 .clear{
     clear: both;
 }
