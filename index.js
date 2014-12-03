@@ -136,15 +136,18 @@ $(document).ready(function(){
     
     //presets button
     $(".preset").click(function(){
-	var colors = presets[$(this).val()];
+	var colors = controls[$("#control-key").text()]["buttons"][$(this).val()];
+	var lamps = $("#lamp-form").children(".lamp");
 
-	for(var i=0; i<colors.length; i++){
-	    var key = i + 1;
-	    color = colors[i];
-	    setOnOff(key, color["on"]);
-	    var lamp_ul = $("#lamp-form").find(".key[value=" + key + "]").parents(".lamp-ul");
-	    setColor(lamp_ul, color["x"], color["y"], color["bri"]);
-	}
+	lamps.each(function(i){
+	    if( i < colors.length){
+		var color = colors[i];
+		var key = $(this).find(".key").val();
+		setOnOff(key, color["on"]);
+		setColor($(this).find(".lamp-ul"), color["x"], color["y"], color["bri"]);
+		i = i + 1;
+	    }
+	});
 	submitColor();
     });
 
@@ -222,92 +225,55 @@ $(document).ready(function(){
 
     
     //presets
-    var bri = 80;
+    var max = 255;
+    var X = 0.346;
+    var Y = 0.358;
+
+    var D1 = {
+	on: true,
+	x: X,
+	y: Y,
+	bri: max
+    };
+    var D2 = {
+	on: true,
+	x: 0.345,
+	y: 0.358,
+	bri: 232
+    };
+    var off = {
+	on: false,
+	x: X,
+	y: Y,
+	bri: 0
+    };
+
     var presets = {
-	"aaaa":
-	[{
-	    on: true,
-	    x: 0.1,
-	    y: 0.2,
-	    bri: bri
-	},
-	 {
-	     on: true,
-	     x: 0.2,
-	     y: 0.3,
-	     bri: bri
-	 },
-	 {
-	     on: true,
-	     x: 0.4,
-	     y: 0.4,
-	     bri: bri
-	 },
-	 {
-	     on: true,
-	     x: 0.6,
-	     y: 0.7,
-	     bri: bri
-	 },
-	 {
-	     on: true,
-	     x: 0.8,
-	     y: 0.6,
-	     bri: bri
-	 }
+	"all OFF":
+	[
+	    off,off,off,off,off
 	],
-	"bbb":
+	"夏":
+
+	[
+	    D1,D1,D1,D1,D1
+	],
+	"冬":
+
+	[
+	    D2,D2,D2,D2,D2
+	],
+	"例": 
 	[{
 	    on: true,
-	    x: 11,
-	    y: 22,
+	    x: 0.5,
+	    y: 0.5,
 	    bri: 11
 	}],
 
     };
 
-    var presets_b = {
-	"hoge":
-	[{
-	    on: true,
-	    x: 0.1,
-	    y: 0.2,
-	    bri: bri
-	},
-	 {
-	     on: true,
-	     x: 0.2,
-	     y: 0.3,
-	     bri: bri
-	 },
-	 {
-	     on: true,
-	     x: 0.4,
-	     y: 0.4,
-	     bri: bri
-	 },
-	 {
-	     on: true,
-	     x: 0.6,
-	     y: 0.7,
-	     bri: bri
-	 },
-	 {
-	     on: true,
-	     x: 0.8,
-	     y: 0.6,
-	     bri: bri
-	 }
-	],
-	"huga":
-	[{
-	    on: true,
-	    x: 11,
-	    y: 22,
-	    bri: 11
-	}],
-
-    };
+    var presets_b = presets;
 
 
     //control numbers
