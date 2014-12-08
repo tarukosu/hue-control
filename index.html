@@ -6,8 +6,8 @@
     <title>
       hue control
     </title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
-
   </head>
 
 
@@ -19,7 +19,7 @@
     </form>
     -->
     <div>
-      <input type="button" id="origin-control" class="control" value="コントロール">
+      <input type="button" id="origin-control" class="control btn btn-default" value="コントロール">
     </div>
     <div id="control-status">
       現在の状態：<span id="control-key"></span>
@@ -53,15 +53,19 @@
 	</ul>
       </div>
       <br class="clear"/>
-      <input type="button" id="submit-button" value="送信">
+      <input type="button" id="submit-button" class="btn btn-info" value="送信">
     </form>
     
     <hr>
     <br>
-    <input type="button" id="origin-preset" class="preset" value="プリセット">
+    
+    <button id="origin-preset" class="preset btn btn-primary">
+      プリセットボタン
+    </button>
 
     <script src="jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 
 </html>
