@@ -102,9 +102,9 @@ $(document).ready(function(){
 		    new_state = data[0]["success"][key];
 		}
 		if(new_state){
-		    button.val("on");
+		    button.val("ON");
 		}else{
-		    button.val("off");
+		    button.val("OFF");
 		}
 	    }
 	});
@@ -114,7 +114,7 @@ $(document).ready(function(){
 	var key = getKey($(this));
 	//set new state
 	var state;
-	if($(this).val() == "on"){
+	if($(this).val() == "ON"){
 	    state = false;
 	}else{
 	    state = true;
@@ -169,9 +169,9 @@ $(document).ready(function(){
 
 		    // set on or off
 		    if(data[key]["state"]["on"]){
-			newlamp.find(".on-off-button").val("on");
+			newlamp.find(".on-off-button").val("ON");
 		    }else{
-			newlamp.find(".on-off-button").val("off");
+			newlamp.find(".on-off-button").val("OFF");
 		    }
 		    // set x y bri
 		    var bri = data[key]["state"]["bri"];
@@ -229,106 +229,114 @@ $(document).ready(function(){
     //var X = 0.346;
     //var Y = 0.358;
 
+	var f = {	on: true,
+	x: 0.344,
+	y: 0.358,
+	bri: 186
+    };
+	
+	
 	//ﾃﾞｨﾌｭｰｽﾞ無し
     var D11 = {	on: true,
-	x: 0.346,
-	y: 0.358,
-	bri: 124
+	x: 0.3465,
+	y: 0.359,
+	bri: 240
     };
 	var D12 = {	on: true,
-	x: 0.346,
-	y: 0.358,
-	bri: 148
+	x: 0.347,
+	y: 0.359,
+	bri: 175
     };
-	var D13 = {	on: true,
+/*	var D13 = {	on: true,
 	x: 0.345,
 	y: 0.356,
 	bri: 197
     };
-	
+	*/
 	
     var D21 = {	on: true,
 	x: 0.346,
-	y: 0.358,
-	bri: 112
+	y: 0.359,
+	bri: 193
     };
     var D22 = {	on: true,
 	x: 0.346,
-	y: 0.356,
-	bri: 134
+	y: 0.358,
+	bri: 138
     };
-    var D23 = {	on: true,
+/*    var D23 = {	on: true,
 	x: 0.345,
 	y: 0.356,
 	bri: 180
     };
-	
+*/	
 	var D31 = {	on: true,
 	x: 0.346,
-	y: 0.358,
-	bri: 84
+	y: 0.3585,
+	bri: 217
     };
 	var D32 = {	on: true,
-	x: 0.346,
-	y: 0.357,
-	bri: 103
+	x: 0.3455,
+	y: 0.358,
+	bri: 157
     };
-	var D33 = {	on: true,
+/*	var D33 = {	on: true,
 	x: 0.345,
 	y: 0.356,
 	bri: 142
     };
-	
+*/	
 	
 	//ﾃﾞｨﾌｭｰｽ有り
     var d11 = {	on: true,
-	x: 0.347,
-	y: 0.360,
-	bri: 154
+	x: 0.3475,
+	y: 0.3605,
+	bri: 240
     };
 	var d12 = {	on: true,
 	x: 0.347,
-	y: 0.359,
-	bri: 185
+	y: 0.360,
+	bri: 175
     };
-	var d13 = {	on: true,
+/*	var d13 = {	on: true,
 	x: 0.346,
 	y: 0.357,
 	bri: 255
     };
-	
+*/	
 	
     var d21 = {	on: true,
 	x: 0.347,
 	y: 0.360,
-	bri: 140
+	bri: 138
     };
     var d22 = {	on: true,
-	x: 0.347,
-	y: 0.359,
-	bri: 169
+	x: 0.348,
+	y: 0.361,
+	bri: 217
     };
-    var d23 = {	on: true,
+/*    var d23 = {	on: true,
 	x: 0.346,
 	y: 0.357,
 	bri: 230
     };
-	
+*/	
 	var d31 = {	on: true,
-	x: 0.347,
-	y: 0.36,
-	bri: 108
+	x: 0.348,
+	y: 0.361,
+	bri: 217
     };
 	var d32 = {	on: true,
 	x: 0.347,
-	y: 0.359,
-	bri: 132
+	y: 0.3605,
+	bri: 157
     };
-	var d33 = {	on: true,
+/*	var d33 = {	on: true,
 	x: 0.346,
 	y: 0.357,
 	bri: 183
     };
+*/
 	
 	//OFF
     var off = {	on: false,
@@ -337,97 +345,106 @@ $(document).ready(function(){
 	bri: 0
     };
 
+
     var presets = {
 	"all OFF":
 	[
 	    off,off,off,off,off
 	],
+ 
 	
-	//no difはﾃﾞｨﾌｭｰｽﾞ無しの意味，大・大は（仰角，照度）＝（大，大）
-	"no dif 大・大":
+	//no difはﾃﾞｨﾌｭｰｽﾞ無しの意味
+	"dif\u000A仰角大・照度大":
 	[
 	    D11,D11,D11,D11,D11
 	],
-	"no dif 中・大":
+	"dif\u000A仰角大・照度小":
 	[
 	    D12,D12,D12,D12,D12
 	],
-	"no dif 小・大":
+/*	"仰角大・照度大":
 	[
 	    D13,D13,D13,D13,D13
 	],
+*/	
 	
-	
-	"no dif 大・中":
+	"dif\u000A仰角中・照度大":
 	[
 	    D21,D21,D21,D21,D21
 	],
-	"no dif 中・中":
+	"dif\u000A仰角中・照度小":
 	[
 	    D22,D22,D22,D22,D22
 	],
-	"no dif 小・中":
+/*	"仰角大・照度大":
 	[
 	    D23,D23,D23,D23,D23
 	],
-
+*/
 	
-	"no dif 大・小":
+	"dif\u000A仰角小・照度大":
 	[
 	    D31,D31,D31,D31,D31
 	],
-	"no dif 中・小":
+	"dif\u000A仰角小・照度小":
 	[
 	    D32,D32,D32,D32,D32
 	],
-	"no dif 小・小":
+/*	"仰角大・照度大":
 	[
 	    D33,D33,D33,D33,D33
 	],
+*/	
 	
 	
-
-		//difはﾃﾞｨﾌｭｰｽﾞ有りの意味，大・大は（仰角，照度）＝（大，大）
-	"dif 大・大":
+	"FRONT":
+	[
+	    f,f,f,f,f
+	],
+	
+	
+	//difはﾃﾞｨﾌｭｰｽﾞ有りの意味
+	"no dif\u000A仰角大・照度大":
 	[
 	    d11,d11,d11,d11,d11
 	],
-	"dif 中・大":
+	"no dif\u000A仰角大・照度小":
 	[
 	    d12,d12,d12,d12,d12
 	],
-	"dif 小・大":
+/*	"dif 小・大":
 	[
 	    d13,d13,d13,d13,d13
 	],
+*/	
 	
-	
-	"dif 大・中":
+	"no dif\u000A仰角中・照度大":
 	[
 	    d21,d21,d21,d21,d21
 	],
-	"dif 中・中":
+	"no dif\u000A仰角中・照度小":
 	[
 	    d22,d22,d22,d22,d22
 	],
-	"dif 小・中":
+/*	"dif 小・中":
 	[
 	    d23,d23,d23,d23,d23
 	],
+*/	
 
-	
-	"dif 大・小":
+	"no dif\u000A仰角小・照度大":
 	[
 	    d31,d31,d31,d31,d31
 	],
-	"dif 中・小":
+	"no dif\u000A仰角小・照度小":
 	[
 	    d32,d32,d32,d32,d32
 	],
-	"dif 小・小":
+/*	"dif 小・小":
 	[
 	    d33,d33,d33,d33,d33
 	],
+*/
 }
 	
 
@@ -440,11 +457,11 @@ $(document).ready(function(){
 	    "lights": range(1,15),
 	    "buttons": presets
 	},
-	"1": {
+	"サイド": {
 	    "lights": range(1,5),
 	    "buttons": presets_b
 	},
-	"2": {
+	"フロント": {
 	    "lights": range(6,10),
 	    "buttons": presets_b
 	},
@@ -452,7 +469,8 @@ $(document).ready(function(){
 	    "lights": range(11,15),
 	    "buttons": presets_b
 	}
-    }
+	}
+
 
     initControlButtons(controls);
     initControl("all");
