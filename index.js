@@ -195,7 +195,7 @@ $(document).ready(function(){
 	for( var key in buttons_array){
 	    var preset = buttons_array[key];
 	    var newpreset = $( "#origin-preset" ).clone(true);
-	    newpreset.val(key);
+	    newpreset.html(key);
 	    newpreset.show().removeAttr("id").addClass("preset-instance").insertBefore( $("#origin-preset") );
 	};
     }
@@ -213,6 +213,8 @@ $(document).ready(function(){
     });
 
     function initControl(control_name){
+	$(".control.btn-success").removeClass("btn-success");
+	$(".control[value=" + control_name + "]").addClass("btn-success");
 	$("#control-key").text(control_name);
 	initLights(controls[control_name]["lights"]);
 	initButtons(controls[control_name]["buttons"]);
@@ -354,11 +356,11 @@ $(document).ready(function(){
  
 	
 	//no difはﾃﾞｨﾌｭｰｽﾞ無しの意味
-	"dif\u000A仰角大・照度大":
+	"dif<br/>仰角大・照度大":
 	[
 	    D11,D11,D11,D11,D11
 	],
-	"dif\u000A仰角大・照度小":
+	"dif<br/>仰角大・照度小":
 	[
 	    D12,D12,D12,D12,D12
 	],
@@ -368,11 +370,11 @@ $(document).ready(function(){
 	],
 */	
 	
-	"dif\u000A仰角中・照度大":
+	"dif<br/>仰角中・照度大":
 	[
 	    D21,D21,D21,D21,D21
 	],
-	"dif\u000A仰角中・照度小":
+	"dif<br/>仰角中・照度小":
 	[
 	    D22,D22,D22,D22,D22
 	],
@@ -382,11 +384,11 @@ $(document).ready(function(){
 	],
 */
 	
-	"dif\u000A仰角小・照度大":
+	"dif<br/>仰角小・照度大":
 	[
 	    D31,D31,D31,D31,D31
 	],
-	"dif\u000A仰角小・照度小":
+	"dif<br/>仰角小・照度小":
 	[
 	    D32,D32,D32,D32,D32
 	],
@@ -404,11 +406,11 @@ $(document).ready(function(){
 	
 	
 	//difはﾃﾞｨﾌｭｰｽﾞ有りの意味
-	"no dif\u000A仰角大・照度大":
+	"no dif<br/>仰角大・照度大":
 	[
 	    d11,d11,d11,d11,d11
 	],
-	"no dif\u000A仰角大・照度小":
+	"no dif<br/>仰角大・照度小":
 	[
 	    d12,d12,d12,d12,d12
 	],
@@ -418,11 +420,11 @@ $(document).ready(function(){
 	],
 */	
 	
-	"no dif\u000A仰角中・照度大":
+	"no dif<br/>仰角中・照度大":
 	[
 	    d21,d21,d21,d21,d21
 	],
-	"no dif\u000A仰角中・照度小":
+	"no dif<br/>仰角中・照度小":
 	[
 	    d22,d22,d22,d22,d22
 	],
@@ -432,11 +434,11 @@ $(document).ready(function(){
 	],
 */	
 
-	"no dif\u000A仰角小・照度大":
+	"no dif<br/>仰角小・照度大":
 	[
 	    d31,d31,d31,d31,d31
 	],
-	"no dif\u000A仰角小・照度小":
+	"no dif<br/>仰角小・照度小":
 	[
 	    d32,d32,d32,d32,d32
 	],
