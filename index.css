@@ -33,15 +33,13 @@ body{
 .preset{
     margin-right: 20px;
     margin-top: 20px;
-    width: 150px !important;
+    width: 120px !important;
     height: 50px !important;
     white-space: normal;
 }
 
-#origin-control{
-    display: none;
-}
 
+/*---- control button -----*/
 .control{
     width: 200px;
     height: 40px;
@@ -49,7 +47,12 @@ body{
     margin-top: 20px;
 }
 
+#origin-control{
+    display: none;
+}
+
 #control-status{
+    display: none;
     margin-top: 20px;
 }
 
