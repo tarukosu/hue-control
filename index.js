@@ -234,20 +234,20 @@ $(document).ready(function(){
 	var f = {	on: true,
 	x: 0.344,
 	y: 0.358,
-	bri: 186
+	bri: 255
     };
 	
 	
 	//ﾃﾞｨﾌｭｰｽﾞ無し
     var D11 = {	on: true,
-	x: 0.3465,
-	y: 0.359,
-	bri: 240
+	x: 0.344,
+	y: 0.354,
+	bri: 255
     };
 	var D12 = {	on: true,
-	x: 0.347,
-	y: 0.359,
-	bri: 175
+	x: 0.344,
+	y: 0.354,
+	bri: 184
     };
 /*	var D13 = {	on: true,
 	x: 0.345,
@@ -257,14 +257,14 @@ $(document).ready(function(){
 	*/
 	
     var D21 = {	on: true,
-	x: 0.346,
-	y: 0.359,
-	bri: 193
+	x: 0.344,
+	y: 0.354,
+	bri: 179
     };
     var D22 = {	on: true,
-	x: 0.346,
-	y: 0.358,
-	bri: 138
+	x: 0.3435,
+	y: 0.355,
+	bri: 210
     };
 /*    var D23 = {	on: true,
 	x: 0.345,
@@ -273,14 +273,14 @@ $(document).ready(function(){
     };
 */	
 	var D31 = {	on: true,
-	x: 0.346,
-	y: 0.3585,
-	bri: 217
+	x: 0.344,
+	y: 0.356,
+	bri: 210
     };
 	var D32 = {	on: true,
-	x: 0.3455,
-	y: 0.358,
-	bri: 157
+	x: 0.344,
+	y: 0.356,
+	bri: 151
     };
 /*	var D33 = {	on: true,
 	x: 0.345,
@@ -291,14 +291,14 @@ $(document).ready(function(){
 	
 	//ﾃﾞｨﾌｭｰｽ有り
     var d11 = {	on: true,
-	x: 0.3475,
-	y: 0.3605,
-	bri: 240
+	x: 0.343,
+	y: 0.353,
+	bri: 251
     };
 	var d12 = {	on: true,
-	x: 0.347,
-	y: 0.360,
-	bri: 175
+	x: 0.343,
+	y: 0.353,
+	bri: 185
     };
 /*	var d13 = {	on: true,
 	x: 0.346,
@@ -308,14 +308,14 @@ $(document).ready(function(){
 */	
 	
     var d21 = {	on: true,
-	x: 0.347,
-	y: 0.360,
-	bri: 138
+	x: 0.342,
+	y: 0.354,
+	bri: 151
     };
     var d22 = {	on: true,
-	x: 0.348,
-	y: 0.361,
-	bri: 217
+	x: 0.342,
+	y: 0.353,
+	bri: 111
     };
 /*    var d23 = {	on: true,
 	x: 0.346,
@@ -324,14 +324,14 @@ $(document).ready(function(){
     };
 */	
 	var d31 = {	on: true,
-	x: 0.348,
-	y: 0.361,
-	bri: 217
+	x: 0.342,
+	y: 0.354,
+	bri: 176
     };
 	var d32 = {	on: true,
-	x: 0.347,
-	y: 0.3605,
-	bri: 157
+	x: 0.342,
+	y: 0.354,
+	bri: 126
     };
 /*	var d33 = {	on: true,
 	x: 0.346,
@@ -356,11 +356,11 @@ $(document).ready(function(){
  
 	
 	//no difはﾃﾞｨﾌｭｰｽﾞ無しの意味
-	"dif<br>仰角大・照度大":
+	"no dif<br>仰角大・照度大":
 	[
 	    D11,D11,D11,D11,D11
 	],
-	"dif<br>仰角大・照度小":
+	"no dif<br>仰角大・照度小":
 	[
 	    D12,D12,D12,D12,D12
 	],
@@ -370,11 +370,11 @@ $(document).ready(function(){
 	],
 */	
 	
-	"dif<br>仰角中・照度大":
+	"no dif<br>仰角中・照度大":
 	[
 	    D21,D21,D21,D21,D21
 	],
-	"dif<br>仰角中・照度小":
+	"no dif<br>仰角中・照度小":
 	[
 	    D22,D22,D22,D22,D22
 	],
@@ -384,11 +384,11 @@ $(document).ready(function(){
 	],
 */
 	
-	"dif<br>仰角小・照度大":
+	"no dif<br>仰角小・照度大":
 	[
 	    D31,D31,D31,D31,D31
 	],
-	"dif<br>仰角小・照度小":
+	"no dif<br>仰角小・照度小":
 	[
 	    D32,D32,D32,D32,D32
 	],
@@ -406,11 +406,11 @@ $(document).ready(function(){
 	
 	
 	//difはﾃﾞｨﾌｭｰｽﾞ有りの意味
-	"no dif<br>仰角大・照度大":
+	"dif<br>仰角大・照度大":
 	[
 	    d11,d11,d11,d11,d11
 	],
-	"no dif<br>仰角大・照度小":
+	"dif<br>仰角大・照度小":
 	[
 	    d12,d12,d12,d12,d12
 	],
@@ -420,11 +420,11 @@ $(document).ready(function(){
 	],
 */	
 	
-	"no dif<br>仰角中・照度大":
+	"dif<br>仰角中・照度大":
 	[
 	    d21,d21,d21,d21,d21
 	],
-	"no dif<br>仰角中・照度小":
+	"dif<br>仰角中・照度小":
 	[
 	    d22,d22,d22,d22,d22
 	],
@@ -434,11 +434,11 @@ $(document).ready(function(){
 	],
 */	
 
-	"no dif<br>仰角小・照度大":
+	"dif<br>仰角小・照度大":
 	[
 	    d31,d31,d31,d31,d31
 	],
-	"no dif<br>仰角小・照度小":
+	"dif<br>仰角小・照度小":
 	[
 	    d32,d32,d32,d32,d32
 	],
@@ -467,7 +467,7 @@ $(document).ready(function(){
 	    "lights": range(6,10),
 	    "buttons": presets_b
 	},
-	"3": {
+	"標準光源": {
 	    "lights": range(11,15),
 	    "buttons": presets_b
 	}
