@@ -102,8 +102,10 @@ $(document).ready(function(){
 		    new_state = data[0]["success"][key];
 		}
 		if(new_state){
+			button.addClass("btn-danger");
 		    button.val("ON");
 		}else{
+			button.removeClass("btn-danger");
 		    button.val("OFF");
 		}
 	    }
@@ -170,8 +172,11 @@ $(document).ready(function(){
 		    // set on or off
 		    if(data[key]["state"]["on"]){
 			newlamp.find(".on-off-button").val("ON");
+			newlamp.find(".on-off-button").addClass("btn-danger");
 		    }else{
 			newlamp.find(".on-off-button").val("OFF");
+			newlamp.find(".on-off-button").removeClass("btn-danger");
+
 		    }
 		    // set x y bri
 		    var bri = data[key]["state"]["bri"];
@@ -240,105 +245,127 @@ $(document).ready(function(){
 	
 	//ﾃﾞｨﾌｭｰｽﾞ無し
     var D11 = {	on: true,
-	x: 0.344,
-	y: 0.354,
-	bri: 255
+	x: 0.345,
+	y: 0.357,
+	bri: 225
     };
 	var D12 = {	on: true,
-	x: 0.344,
-	y: 0.354,
-	bri: 184
-    };
-/*	var D13 = {	on: true,
 	x: 0.345,
-	y: 0.356,
-	bri: 197
+	y: 0.358,
+	bri: 164
     };
-	*/
+	//秋色
+	var D13 = {	on: true,
+	x: 0.445,
+	y: 0.41,
+	bri: 247
+    };
+
 	
     var D21 = {	on: true,
-	x: 0.344,
-	y: 0.354,
-	bri: 179
+	x: 0.345,
+	y: 0.356,
+	bri: 201
     };
     var D22 = {	on: true,
-	x: 0.3435,
-	y: 0.355,
-	bri: 210
+	x: 0.345,
+	y: 0.358,
+	bri: 136
     };
-/*    var D23 = {	on: true,
+	//秋色
+    var D23 = {	on: true,
+	x: 0.445,
+	y: 0.41,
+	bri: 255
+    };
+	
+	
+	var D31 = {	on: true,
 	x: 0.345,
 	y: 0.356,
-	bri: 180
-    };
-*/	
-	var D31 = {	on: true,
-	x: 0.344,
-	y: 0.356,
-	bri: 210
+	bri: 238
     };
 	var D32 = {	on: true,
-	x: 0.344,
-	y: 0.356,
-	bri: 151
-    };
-/*	var D33 = {	on: true,
 	x: 0.345,
-	y: 0.356,
-	bri: 142
+	y: 0.359,
+	bri: 174
     };
-*/	
+	//秋色
+	var D33 = {	on: true,
+	x: 0.445,
+	y: 0.410,
+	bri: 255
+    };
+
 	
 	//ﾃﾞｨﾌｭｰｽ有り
     var d11 = {	on: true,
-	x: 0.343,
-	y: 0.353,
-	bri: 251
+	x: 0.346,
+	y: 0.36,
+	bri: 239
     };
 	var d12 = {	on: true,
-	x: 0.343,
-	y: 0.353,
-	bri: 185
-    };
-/*	var d13 = {	on: true,
-	x: 0.346,
+	x: 0.345,
 	y: 0.357,
+	bri: 174
+    };
+	//秋色
+	var d13 = {	on: true,
+	x: 0.445,
+	y: 0.405,
 	bri: 255
     };
-*/	
+
 	
     var d21 = {	on: true,
-	x: 0.342,
-	y: 0.354,
-	bri: 151
+	x: 0.346,
+	y: 0.36,
+	bri: 198
     };
     var d22 = {	on: true,
-	x: 0.342,
-	y: 0.353,
-	bri: 111
+	x: 0.345,
+	y: 0.358,
+	bri: 134
     };
-/*    var d23 = {	on: true,
-	x: 0.346,
-	y: 0.357,
-	bri: 230
+	//秋色
+    var d23 = {	on: true,
+	x: 0.445,
+	y: 0.405,
+	bri: 216
     };
-*/	
+
+	
 	var d31 = {	on: true,
-	x: 0.342,
-	y: 0.354,
-	bri: 176
+	x: 0.345,
+	y: 0.357,
+	bri: 251
     };
 	var d32 = {	on: true,
-	x: 0.342,
-	y: 0.354,
-	bri: 126
-    };
-/*	var d33 = {	on: true,
-	x: 0.346,
+	x: 0.344,
 	y: 0.357,
-	bri: 183
+	bri: 169
     };
-*/
+	//秋色
+	var d33 = {	on: true,
+	x: 0.445,
+	y: 0.405,
+	bri: 255
+    };
+	
+	
+	//サイド
+	var s1 = {	on: true,
+	x: 0.348,
+	y: 0.361,
+	bri: 235
+    };
+	//サイド秋色
+	var s2 = {	on: true,
+	x: 0.445,
+	y: 0.41,
+	bri: 255
+    };	
+	
 	
 	//OFF
     var off = {	on: false,
@@ -360,16 +387,17 @@ $(document).ready(function(){
 	[
 	    D11,D11,D11,D11,D11
 	],
-	"no dif<br>仰角大・照度小":
+/*	"no dif<br>仰角大・照度小":
 	[
 	    D12,D12,D12,D12,D12
 	],
-/*	"仰角大・照度大":
+*/
+	"no dif 【秋】<br>仰角大・照度大":
 	[
 	    D13,D13,D13,D13,D13
 	],
-*/	
 	
+/*	
 	"no dif<br>仰角中・照度大":
 	[
 	    D21,D21,D21,D21,D21
@@ -378,11 +406,12 @@ $(document).ready(function(){
 	[
 	    D22,D22,D22,D22,D22
 	],
-/*	"仰角大・照度大":
+
+	"no dif 秋<br>仰角中・照度大":
 	[
 	    D23,D23,D23,D23,D23
 	],
-*/
+
 	
 	"no dif<br>仰角小・照度大":
 	[
@@ -392,7 +421,8 @@ $(document).ready(function(){
 	[
 	    D32,D32,D32,D32,D32
 	],
-/*	"仰角大・照度大":
+
+	"no dif 秋<br>仰角小・照度大":
 	[
 	    D33,D33,D33,D33,D33
 	],
@@ -410,41 +440,58 @@ $(document).ready(function(){
 	[
 	    d11,d11,d11,d11,d11
 	],
-	"dif<br>仰角大・照度小":
+/*	"dif<br>仰角大・照度小":
 	[
 	    d12,d12,d12,d12,d12
 	],
-/*	"dif 小・大":
+*/
+	"dif  【秋】<br>仰角大・照度大":
 	[
 	    d13,d13,d13,d13,d13
 	],
-*/	
+	
 	
 	"dif<br>仰角中・照度大":
 	[
 	    d21,d21,d21,d21,d21
 	],
-	"dif<br>仰角中・照度小":
+/*	"dif<br>仰角中・照度小":
 	[
 	    d22,d22,d22,d22,d22
 	],
-/*	"dif 小・中":
+*/
+	"dif  【秋】<br>仰角中・照度大":
 	[
 	    d23,d23,d23,d23,d23
 	],
-*/	
+	
 
 	"dif<br>仰角小・照度大":
 	[
 	    d31,d31,d31,d31,d31
 	],
-	"dif<br>仰角小・照度小":
+/*	"dif<br>仰角小・照度小":
 	[
 	    d32,d32,d32,d32,d32
 	],
-/*	"dif 小・小":
+*/
+	"dif  【秋】<br>仰角小・照度大":
 	[
 	    d33,d33,d33,d33,d33
+	],
+
+
+
+/*
+	"サイド":
+	[
+	    s1,s1,s1,s1,s1
+	],
+
+
+	"サイド 秋":
+	[
+	    s2,s2,s2,s2,s2
 	],
 */
 }
